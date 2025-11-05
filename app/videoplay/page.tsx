@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 interface Video {
@@ -20,7 +20,7 @@ interface Category {
   name: string;
 }
 
-export default function VideoPlay() {
+function VideoPlay() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [currentVideo, setCurrentVideo] = useState<Video | null>(null);
   const [isLiked, setIsLiked] = useState(false);
@@ -400,5 +400,13 @@ export default function VideoPlay() {
       </div>
 
     </>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VideoPlay />
+    </Suspense>
   );
 }
