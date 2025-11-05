@@ -1,33 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-// Define the type for mongoose cache
-interface MongooseCache {
-  conn: typeof mongoose | null;
-  promise: Promise<typeof mongoose> | null;
-}
-
-// Declare the global namespace augmentation
-declare global {
-  var mongoose: MongooseCache | undefined;
-}
-
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/video_platform';
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/phub";
 
 if (!MONGODB_URI) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env'
-  );
+  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
 }
 
-// Initialize cached as MongooseCache
-let cached: MongooseCache = global.mongoose || { conn: null, promise: null };
+let cached = (global as any).mongoose;
 
-// Save the cached connection globally
-if (!global.mongoose) {
-  global.mongoose = cached;
+if (!cached) {
+  cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
-async function connectDB(): Promise<typeof mongoose> {
+async function dbConnect() {
   if (cached.conn) {
     return cached.conn;
   }
@@ -52,4 +37,4 @@ async function connectDB(): Promise<typeof mongoose> {
   return cached.conn;
 }
 
-export default connectDB;
+export default dbConnect;

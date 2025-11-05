@@ -1,49 +1,31 @@
-# TODO List for Fixing Problems and Adding CRUD Functionality
+# TODO List for Home Page Header Design
 
-## Completed
-- [x] Analyze project structure and identify issues
-- [x] Create plan and get user approval
-- [x] Read lib/services/media.ts for upload issues
-- [x] Add timeouts and better error handling in lib/services/media.ts
-
-## Completed
-- [x] Analyze project structure and identify issues
-- [x] Create plan and get user approval
-- [x] Read lib/services/media.ts for upload issues
-- [x] Add timeouts and better error handling in lib/services/media.ts
-- [x] Add PUT and DELETE to app/api/videos/route.ts
-
-## Completed
-- [x] Analyze project structure and identify issues
-- [x] Create plan and get user approval
-- [x] Read lib/services/media.ts for upload issues
-- [x] Add timeouts and better error handling in lib/services/media.ts
-- [x] Add PUT and DELETE to app/api/videos/route.ts
-- [x] Add PUT and DELETE to app/api/categories/route.ts
-
-## Completed
-- [x] Analyze project structure and identify issues
-- [x] Create plan and get user approval
-- [x] Read lib/services/media.ts for upload issues
-- [x] Add timeouts and better error handling in lib/services/media.ts
-- [x] Add PUT and DELETE to app/api/videos/route.ts
-- [x] Add PUT and DELETE to app/api/categories/route.ts
-- [x] Improve error handling in API routes
-- [x] Check environment variables
-
-## Completed
-- [x] Analyze project structure and identify issues
-- [x] Create plan and get user approval
-- [x] Read lib/services/media.ts for upload issues
-- [x] Add timeouts and better error handling in lib/services/media.ts
-- [x] Add PUT and DELETE to app/api/videos/route.ts
-- [x] Add PUT and DELETE to app/api/categories/route.ts
-- [x] Improve error handling in API routes
-- [x] Check environment variables
-- [x] Optimize categories query
-
-## Completed
-- [x] Test updated APIs
-- [x] Verify DB connection
-- [x] Check Cloudinary config
-- [x] Add database indexes for optimization
+- [x] Update app/page.tsx to add header with logo on left, search icon on right, full width, grey background
+- [x] Update app/globals.css to set body background to black
+- [x] Run development server (npm run dev) to preview changes
+- [x] Use browser_action to launch browser and verify header design (browser tool disabled, skipped)
+- [x] Update app/page.tsx to set max width of the page to 90% of the screen
+- [x] Make max width responsive: full width on small/mobile screens, 90% on larger screens
+- [x] Add categories nav below header with dropdown button for more categories
+- [x] Add trending videos section with grid of video cards
+- [x] Add infinite scroll pagination for videos- [x] Add background to video section like header
+- [x] Add age verification popup on first visit
+- [x] Change popup backdrop to show blurred homescreen instead of background
+- [x] Render popup over the homepage instead of blocking it
+- [x] Allow user to change age selection on reload if previously selected under 18
+- [x] Fix duplicate key error in video list by making IDs unique
+- [x] Fix image URL by using videoId instead of id for YouTube thumbnails
+- [x] Change video grid to show 2 columns on small screens instead of 1
+- [x] Fix thumbnail aspect ratio on small screens using aspect-video class
+- [x] Fix max width to apply only on large screens (lg:max-w-[90vw]), full width on small screens
+- [x] Make video section title responsive (text-xl on small, text-2xl on larger screens)
+- [x] Add click outside to close categories dropdown
+- [x] Create videoplay screen with same header and category section
+- [x] Add video player below categories nav
+- [x] Add similar videos section below video player
+- [x] Remove age verification popup from videoplay screen
+- [x] Add click handler to video cards on homepage to navigate to videoplay screen with videoId param
+- [x] Add click handler to video cards on videoplay page to navigate to same route with different videoId
+- [x] Increase number of videos in videoplay page to enable infinite scroll
+- [x] Make logo clickable to redirect to homepage on both pages
+- [x] Add like, views, and share buttons below video player

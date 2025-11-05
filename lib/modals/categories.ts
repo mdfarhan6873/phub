@@ -1,29 +1,11 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
 
-const categorySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  slug: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  thumbnail: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+export interface ICategory extends Document {
+  name: string;
+}
+
+const CategorySchema: Schema = new Schema({
+  name: { type: String, required: true, unique: true },
 });
 
-// Add index for faster sorting
-categorySchema.index({ name: 1 });
-
-const Category = mongoose.models.Category || mongoose.model('Category', categorySchema);
-
-export default Category;
+export default mongoose.models.Category || mongoose.model<ICategory>("Category", CategorySchema);
