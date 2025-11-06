@@ -1,31 +1,14 @@
-# TODO List for Home Page Header Design
+# TODO: Generate Sitemap for Next.js App
 
-- [x] Update app/page.tsx to add header with logo on left, search icon on right, full width, grey background
-- [x] Update app/globals.css to set body background to black
-- [x] Run development server (npm run dev) to preview changes
-- [x] Use browser_action to launch browser and verify header design (browser tool disabled, skipped)
-- [x] Update app/page.tsx to set max width of the page to 90% of the screen
-- [x] Make max width responsive: full width on small/mobile screens, 90% on larger screens
-- [x] Add categories nav below header with dropdown button for more categories
-- [x] Add trending videos section with grid of video cards
-- [x] Add infinite scroll pagination for videos- [x] Add background to video section like header
-- [x] Add age verification popup on first visit
-- [x] Change popup backdrop to show blurred homescreen instead of background
-- [x] Render popup over the homepage instead of blocking it
-- [x] Allow user to change age selection on reload if previously selected under 18
-- [x] Fix duplicate key error in video list by making IDs unique
-- [x] Fix image URL by using videoId instead of id for YouTube thumbnails
-- [x] Change video grid to show 2 columns on small screens instead of 1
-- [x] Fix thumbnail aspect ratio on small screens using aspect-video class
-- [x] Fix max width to apply only on large screens (lg:max-w-[90vw]), full width on small screens
-- [x] Make video section title responsive (text-xl on small, text-2xl on larger screens)
-- [x] Add click outside to close categories dropdown
-- [x] Create videoplay screen with same header and category section
-- [x] Add video player below categories nav
-- [x] Add similar videos section below video player
-- [x] Remove age verification popup from videoplay screen
-- [x] Add click handler to video cards on homepage to navigate to videoplay screen with videoId param
-- [x] Add click handler to video cards on videoplay page to navigate to same route with different videoId
-- [x] Increase number of videos in videoplay page to enable infinite scroll
-- [x] Make logo clickable to redirect to homepage on both pages
-- [x] Add like, views, and share buttons below video player
+## Steps to Complete:
+- [x] Create app/sitemap.ts file with basic structure for sitemap generation
+- [x] Add static page entries (/, /admin, /videoplay)
+- [x] Fetch video data from database and add dynamic video page entries (/videoplay/[videoId])
+- [ ] Fetch category data from database and add category page entries (assuming /categories/[id] or similar) - Skipped as no public category pages exist
+- [x] Test sitemap generation by building the app
+- [x] Verify sitemap URLs are correct and accessible
+
+## Notes:
+- Sitemap will include lastModified dates using timestamps from models.
+- Ensure database connection is available in sitemap.ts.
+- If category pages don't exist publicly, adjust accordingly after testing.
