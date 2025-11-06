@@ -2,7 +2,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 
 
@@ -47,7 +47,7 @@ export default function Home() {
   };
 
   const fetchVideos = async (pageNum: number = 1, append: boolean = false) => {
-    if (loading) return;
+    if (loading || !hasMore) return;
     setLoading(true);
     try {
       const categoryParam = selectedCategory ? `&category=${selectedCategory}` : '';
@@ -62,9 +62,13 @@ export default function Home() {
         if (data.length < 20) {
           setHasMore(false);
         }
+      } else {
+        console.error("Error fetching videos:", res.status, res.statusText);
+        setHasMore(false); // Stop fetching on error to prevent infinite loop
       }
     } catch (error) {
       console.error("Error fetching videos:", error);
+      setHasMore(false); // Stop fetching on network error
     } finally {
       setLoading(false);
     }
@@ -85,12 +89,21 @@ export default function Home() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, [selectedCategory]);
 
+  const loadMore = useCallback(() => {
+    if (hasMore && !loading) {
+      setPage(prev => {
+        const newPage = prev + 1;
+        fetchVideos(newPage, true);
+        return newPage;
+      });
+    }
+  }, [hasMore, loading]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loading) {
-          setPage(prev => prev + 1);
-          fetchVideos(page + 1, true);
+        if (entries[0].isIntersecting) {
+          loadMore();
         }
       },
       { threshold: 1.0 }
@@ -101,7 +114,7 @@ export default function Home() {
     }
 
     return () => observer.disconnect();
-  }, [hasMore, loading, page, selectedCategory]);
+  }, [loadMore]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
