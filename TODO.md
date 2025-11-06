@@ -1,14 +1,7 @@
-# TODO: Generate Sitemap for Next.js App
+# TODO: Fix Netlify Deploy Error
 
-## Steps to Complete:
-- [x] Create app/sitemap.ts file with basic structure for sitemap generation
-- [x] Add static page entries (/, /admin, /videoplay)
-- [x] Fetch video data from database and add dynamic video page entries (/videoplay/[videoId])
-- [ ] Fetch category data from database and add category page entries (assuming /categories/[id] or similar) - Skipped as no public category pages exist
-- [x] Test sitemap generation by building the app
-- [x] Verify sitemap URLs are correct and accessible
-
-## Notes:
-- Sitemap will include lastModified dates using timestamps from models.
-- Ensure database connection is available in sitemap.ts.
-- If category pages don't exist publicly, adjust accordingly after testing.
+- [x] Update package.json to add @netlify/plugin-nextjs as dev dependency
+- [x] Edit netlify.toml to remove publish = "out" and add plugin configuration
+- [x] Install the new dependency using npm install --save-dev @netlify/plugin-nextjs
+- [ ] Commit and push the changes to the repository
+- [ ] Trigger a new deploy on Netlify
